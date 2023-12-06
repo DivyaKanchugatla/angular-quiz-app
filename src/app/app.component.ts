@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'quiz-app';
+  questionsLimit:number;
+  difficulty: string;
+
+  constructor(){
+    this.questionsLimit = 10;
+    this.difficulty = "Easy";
+  }
 }
