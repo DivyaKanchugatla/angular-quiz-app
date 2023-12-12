@@ -1,0 +1,27 @@
+<div class="row justify-content-md-center">
+    <div class="col-md-9 mx-auto">
+        <div class="quiz-form" *ngIf="index < questions.length">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group" *ngIf="selected && selected.question">
+                        <h1>Quiz</h1>
+                        <hr>
+                        <p><b>{{index+1}}.</b>{{selected.question}}</p>
+                        <div *ngIf="options && options.length > 0">
+                            <div *ngFor="let option of options; let i = index">
+                                <input type="radio" [id]="'answer_' + i" class="btn-check" name="answer"
+                                    autocomplete="off" [value]="option" [(ngModel)]="answer">
+                                <label [for]="'answer_' + i" class="btn btn-outline-success">{{ option
+                                    }}</label><br><br>
+                            </div>
+                        </div>
+                        <div class="form-btn">
+                            <button class="submit-btn" (click)="nextQuestion()" [disabled]="disableNextButton"> {{ index
+                                < questions.length - 1 ? 'Next' : 'Finish' }}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

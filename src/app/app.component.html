@@ -1,7 +1,8 @@
 <div class="section" id="quiz">
   <div class="section-center">
     <div class="container">
-      <div class="row justify-content-md-center">
+      <app-quiz #quiz [style.display]="(showQuizScreen)?'block':'none'"></app-quiz>
+      <div class="row justify-content-md-center" [style.display]="(showMainMenu)?'block':'none'">
         <div class="col-md-6">
           <div class="quiz-form">
             <div class="row">
@@ -10,10 +11,10 @@
                   <span class="form-label">
                     Difficulty
                   </span>
-                  <select class="form-control">
-                    <option>Easy</option>
-                    <option>Medium</option>
-                    <option>Hard</option>
+                  <select class="form-control" [(ngModel)]="difficulty">
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
                   </select>
                   <span class="select-arrow"></span>
                 </div>
@@ -25,7 +26,7 @@
                   <span class="form-label">
                     Questions
                   </span>
-                  <select class="form-control">
+                  <select class="form-control" [(ngModel)]="questionsLimit">
                     <option>5</option>
                     <option>10</option>
                     <option>15</option>
@@ -35,12 +36,30 @@
                 </div>
               </div>
             </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <span class="form-label">
+                    Type
+                  </span>
+                  <select class="form-control" [(ngModel)]="type">
+                    <option value="multiple">Multiple Choice</option>
+                    <option value="boolean">True / False</option>
+                  </select>
+                  <span class="select-arrow"></span>
+                </div>
+              </div>
+            </div>
             <div class="form-btn">
-              <button class="submit-btn">Start Quiz</button>
+              <button class="submit-btn" (click)="quizQuestions()" *ngIf="!spinner">Start Quiz</button>
+              <button class="submit-btn" type="button" disabled *ngIf="spinner">
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true">L</span>
+                Loading...
+              </button>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  </div>
+</div>
