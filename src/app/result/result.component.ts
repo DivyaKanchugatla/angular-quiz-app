@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-result',
@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./result.component.css']
 })
 export class ResultComponent {
-
+  @Output() showMainMenuScreen = new EventEmitter();
+  finalResult: any;
+  showMainMenu() {
+    this.showMainMenuScreen.emit(true);
+  }
 }

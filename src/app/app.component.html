@@ -1,7 +1,9 @@
 <div class="section" id="quiz">
   <div class="section-center">
     <div class="container">
-      <app-quiz #quiz [style.display]="(showQuizScreen)?'block':'none'"></app-quiz>
+      <app-quiz #quiz [style.display]="(showQuizScreen)?'block':'none'" (finalResult)="finalResult($event)"></app-quiz>
+      <app-result #result [style.display]="(showResultScreen)?'block':'none'"
+        (showMainMenuScreen)="showMainMenuScreen($event)"></app-result>
       <div class="row justify-content-md-center" [style.display]="(showMainMenu)?'block':'none'">
         <div class="col-md-6">
           <div class="quiz-form">

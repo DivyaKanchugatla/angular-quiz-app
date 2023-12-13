@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { QuizService } from './services/quiz.service';
 import { QuizComponent } from './quiz/quiz.component';
+import { ResultComponent } from './result/result.component';
 
 @Component({
   selector: 'app-root',
@@ -13,16 +14,19 @@ export class AppComponent {
   difficulty: string;
   type: string;
   showQuizScreen: boolean;
+  showResultScreen: boolean
   showMainMenu: boolean;
   spinner: boolean;
 
   @ViewChild('quiz', { static: true }) quiz!: QuizComponent;
+  @ViewChild('result', { static: true }) result!: ResultComponent;
 
   constructor(private quizService: QuizService) {
     this.questionsLimit = 10;
     this.difficulty = "Easy";
     this.type = "Multiple Choice";
     this.showMainMenu = true;
+
   }
 
   quizQuestions(): void {
@@ -36,6 +40,15 @@ export class AppComponent {
     })
   }
 
+  finalResult(result: any): void {
+    this.result.finalResult = result;
+    this.showQuizScreen = false;
+    this.showResultScreen = true;
+  }
+  showMainMenuScreen(event: boolean): void {
+    this.showResultScreen = false;
+    this.showMainMenu = true;
+  }
   toggleSpinner() {
     this.spinner = !this.spinner;
   }
